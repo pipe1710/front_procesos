@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, Validators} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
-import { login, register } from "../../models/auth";
+import { register } from "../../models/auth";
 import { ToastrService } from "ngx-toastr";
 
 @Component({
@@ -14,7 +14,10 @@ export class RegisterUserComponent implements OnInit {
 
   registerForm = this.fb.group({
     email: ['', Validators.required],
-    name: ['', Validators.required],
+    first_name: ['', Validators.required],
+    last_name: ['', Validators.required],
+    address: ['', Validators.required],
+    phone_number: ['', Validators.required],
     password: ['']
   });
 
@@ -33,16 +36,19 @@ export class RegisterUserComponent implements OnInit {
     const user: register = {
       email: this.registerForm.value.email,
       password: this.registerForm.value.password,
-      name: this.registerForm.value.name,
+      phone_number: this.registerForm.value.phone_number,
+      first_name: this.registerForm.value.first_name,
+      last_name: this.registerForm.value.last_name,
+      address: this.registerForm.value.address
     }
     this.auth.register(user).subscribe( res => {
       localStorage.setItem('token', res.token)
-      this.router.navigateByUrl('/list_product').then(r => r);
+      this.router.navigateByUrl('/login').then(r => r);
       this.alert.success('Usuario agregado exitosamente', 'Usuario');
       console.log(res);
     }, error => {
       console.log(error);
-      this.alert.success('Error al agregar el usuario', 'Usuario');
+      this.alert.error('Error al agregar el usuario', 'Usuario');
     });
     this.registerForm.reset();
   }

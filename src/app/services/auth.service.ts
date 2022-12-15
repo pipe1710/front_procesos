@@ -15,7 +15,7 @@ export const httpOptions = {
 })
 export class AuthService {
 
-  url = 'http://localhost:4000/api/users';
+  url = 'http://localhost:8090/';
 
   constructor(
     private http: HttpClient,
@@ -29,7 +29,7 @@ export class AuthService {
   }
 
   register(user: register): Observable<any>{
-    return this.http.post<any>(`${this.url}/register`, user, httpOptions);
+    return this.http.post<any>(`${this.url}api/user`, user, httpOptions);
   }
 
   logout(){
