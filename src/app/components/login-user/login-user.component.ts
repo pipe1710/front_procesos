@@ -3,6 +3,7 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
 import {login} from "../../models/auth";
 import {Router} from "@angular/router";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login-user',
@@ -19,7 +20,8 @@ export class LoginUserComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private alert: ToastrService
   ) {
   }
 
@@ -32,11 +34,11 @@ export class LoginUserComponent implements OnInit {
       password: this.loginForm.value.password
     }
     this.auth.login(user).subscribe( res => {
-      localStorage.setItem('token', res.token)
+      localStorage.setItem('token', res.message)
       this.router.navigateByUrl('/list_product').then(r => r);
-      console.log(res);
     }, error => {
       console.log(error);
+      this.alert.error(error.message, 'login');
     });
     this.loginForm.reset();
   }
