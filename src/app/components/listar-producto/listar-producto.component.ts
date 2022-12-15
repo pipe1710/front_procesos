@@ -3,7 +3,7 @@ import {ProductoService} from "../../services/producto.service";
 import {Category, Producto} from "../../models/producto";
 import {ToastrService} from "ngx-toastr";
 import {AuthService} from "../../services/auth.service";
-import {CategoryService} from "../../services/category.service";
+
 
 @Component({
   selector: 'app-listar-producto',
