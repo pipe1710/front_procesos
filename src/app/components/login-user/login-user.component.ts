@@ -38,7 +38,7 @@ export class LoginUserComponent implements OnInit {
       this.router.navigateByUrl('/list_product').then(r => r);
     }, error => {
       console.log(error);
-      this.alert.error(error.message, 'login');
+      this.alert.error(error.error.message, 'login');
     });
     this.loginForm.reset();
   }
