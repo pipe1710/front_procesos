@@ -7,12 +7,11 @@ import { Producto } from "../models/producto";
   providedIn: 'root'
 })
 export class ProductoService {
-  url = 'http://localhost:4000/api/productos/';
+  url = 'http://localhost:8090/article';
 
   constructor(private http: HttpClient) { }
 
   getProductos(): Observable<any> {
-    const token = localStorage.getItem('token');
     return this.http.get(this.url);
   }
   eliminarProducto(id: string): Observable<any> {

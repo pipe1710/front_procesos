@@ -12,3 +12,9 @@ export class Producto {
     this.precio = precio;
   }
 }
+
+export interface Category {
+  categoryId: string,
+  categoryName: string,
+  categoryDescription: string,
+}

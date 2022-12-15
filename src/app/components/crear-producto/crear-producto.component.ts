@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Producto} from "../../models/producto";
+import {Category, Producto} from "../../models/producto";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {ProductoService} from "../../services/producto.service";
+import {CategoryService} from "../../services/category.service";
 
 @Component({
   selector: 'app-crear-producto',
@@ -14,11 +15,13 @@ export class CrearProductoComponent implements OnInit {
   productForm: FormGroup;
   titulo = 'Crear Producto';
   id: string | null;
+  categories: Category[] = [];
 
   constructor(private  fb: FormBuilder,
               private router: Router,
               private toastr: ToastrService,
               private _prouctoService: ProductoService,
+              private _category: CategoryService,
               private aRouter: ActivatedRoute) {
 
     this.productForm = this.fb.group({
@@ -32,6 +35,16 @@ export class CrearProductoComponent implements OnInit {
 
   ngOnInit(): void {
     this.esEditar();
+    this.getCategories();
+  }
+
+  getCategories() {
+    this._category.getAll().subscribe(data => {
+      this.categories = data;
+      console.log(data)
+    }, error => {
+      console.log(error);
+    });
   }
 
   agregarProducto(){

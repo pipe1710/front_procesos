@@ -12,6 +12,12 @@
               </div>
             </div>
             <div class="form-group mb-3">
+              <select class="form-control" id="exampleFormControlSelect1">
+                <option>Seleccione una categoria</option>
+                <option *ngFor="let item of categories" value="{{ item.categoryId }}">{{ item.categoryName}}</option>
+              </select>
+            </div>
+            <div class="form-group mb-3">
               <input type="text" formControlName="categoria" class="form-control form-control-lg" placeholder="Categoría">
               <div class="text-danger" *ngIf="productForm.get('categoria')?.hasError('required') && productForm.get('categoria')?.touched">
                 <span>La categría del producto <strong>es obligatoria</strong></span>
