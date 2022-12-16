@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container-fluid mt-5">
   <div class="row">
     <div class="col-lg-8 offset-lg-2">
       <div class="card">
@@ -8,22 +8,28 @@
           <table *ngIf="ListProducts.length > 0" class="table table-striped mt-4">
             <thead>
             <tr>
-              <th scope="col">Articulos</th>
-              <th scope="col">Categoría</th>
-              <th scope="col">Ubicación</th>
-              <th scope="col">Precio</th>
+              <th scope="col">Codigo</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Descripcion</th>
+              <th scope="col">Categoria</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Precio de compra</th>
+              <th scope="col">Precio de venta</th>
               <th scope="col">Acciones</th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let producto of ListProducts">
-              <td>{{ producto.nombre }}</td>
-              <td>{{ producto.categoria }}</td>
-              <td>{{ producto.ubicacion }}</td>
-              <td>{{ producto.precio | currency: 'COP': '$': '1.2-2'  }}</td>
+              <td>{{ producto.articleCode }}</td>
+              <td>{{ producto.articleName }}</td>
+              <td>{{ producto.articleDescription }}</td>
+              <td>{{ producto.category?.categoryName }}</td>
+              <td>{{ producto.articleStock }}</td>
+              <td>{{ producto.articleSalePrice | currency: 'COP': '$': '1.2-2'  }}</td>
+              <td>{{ producto.articleSalePrice | currency: 'COP': '$': '1.2-2'  }}</td>
               <td>
-                <button class="btn btn-primary mx-2" [routerLink] = "['/edit_product', producto._id]"><i class="fas fa-edit"></i></button>
-                <button class="btn btn-warning" (click)="eliminarProducto(producto._id)"><i class="fas fa-trash"></i></button>
+                <button class="btn btn-primary mx-2" [routerLink] = "['/edit_product', producto.articleCode]"><i class="fas fa-edit"></i></button>
+                <button class="btn btn-warning" (click)="eliminarProducto(producto.articleCode)"><i class="fas fa-trash"></i></button>
               </td>
             </tr>
             </tbody>

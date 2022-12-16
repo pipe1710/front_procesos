@@ -6,33 +6,48 @@
           <span class="titulo">{{ titulo }}</span>
           <form [formGroup]="productForm" (ngSubmit)="agregarProducto()">
             <div class="form-group mb-3">
-              <input type="text" formControlName="producto" class="form-control form-control-lg" placeholder="Producto">
-              <div class="text-danger" *ngIf="productForm.get('producto')?.hasError('required') && productForm.get('producto')?.touched">
+              <input type="text" formControlName="articleCode" class="form-control form-control-lg" placeholder="Código de producto">
+              <div class="text-danger" *ngIf="productForm.get('articleCode')?.hasError('required') && productForm.get('articleCode')?.touched">
+                <span>El código del producto <strong>es obligatorio</strong></span>
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <input type="text" formControlName="articleDescription" class="form-control form-control-lg" placeholder="Descripción del producto">
+              <div class="text-danger" *ngIf="productForm.get('articleDescription')?.hasError('required') && productForm.get('articleDescription')?.touched">
+                <span>La descripción del producto <strong>es obligatoria</strong></span>
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <input type="text" formControlName="articleName" class="form-control form-control-lg" placeholder="Nombre del producto">
+              <div class="text-danger" *ngIf="productForm.get('articleName')?.hasError('required') && productForm.get('articleName')?.touched">
                 <span>El nombre del producto <strong>es obligatorio</strong></span>
               </div>
             </div>
             <div class="form-group mb-3">
-              <select class="form-control" id="exampleFormControlSelect1">
-                <option>Seleccione una categoria</option>
+              <select formControlName="category" placeholder="Nombre del producto" class="form-control form-control-lg" id="exampleFormControlSelect1">
+                <option value="" selected>Seleccione una categoria</option>
                 <option *ngFor="let item of categories" value="{{ item.categoryId }}">{{ item.categoryName}}</option>
               </select>
-            </div>
-            <div class="form-group mb-3">
-              <input type="text" formControlName="categoria" class="form-control form-control-lg" placeholder="Categoría">
               <div class="text-danger" *ngIf="productForm.get('categoria')?.hasError('required') && productForm.get('categoria')?.touched">
                 <span>La categría del producto <strong>es obligatoria</strong></span>
               </div>
             </div>
             <div class="form-group mb-3">
-              <input type="text" formControlName="ubicacion" class="form-control form-control-lg" placeholder="Ubicación">
-              <div class="text-danger" *ngIf="productForm.get('ubicacion')?.hasError('required') && productForm.get('ubicacion')?.touched">
-                <span>La ubicación del producto <strong>es obligatoria</strong></span>
+              <input type="text" formControlName="articleStock" class="form-control form-control-lg" placeholder="Cantidad">
+              <div class="text-danger" *ngIf="productForm.get('articleStock')?.hasError('required') && productForm.get('articleStock')?.touched">
+                <span>La cantidad del producto <strong>es obligatoria</strong></span>
               </div>
             </div>
             <div class="form-group mb-4">
-              <input type="number" formControlName="precio" class="form-control form-control-lg" placeholder="Precio">
-              <div class="text-danger" *ngIf="productForm.get('precio')?.hasError('required') && productForm.get('precio')?.touched">
-                <span>El precio del producto <strong>es obligatorio</strong></span>
+              <input type="number" formControlName="articleSalePrice" class="form-control form-control-lg" placeholder="Precio">
+              <div class="text-danger" *ngIf="productForm.get('articleSalePrice')?.hasError('required') && productForm.get('articleSalePrice')?.touched">
+                <span>El precio de compra del producto <strong>es obligatorio</strong></span>
+              </div>
+            </div>
+            <div class="form-group mb-4">
+              <input type="number" formControlName="articlePurchasePrice" class="form-control form-control-lg" placeholder="Precio de venta">
+              <div class="text-danger" *ngIf="productForm.get('articlePurchasePrice')?.hasError('required') && productForm.get('articlePurchasePrice')?.touched">
+                <span>El precio de venta del producto <strong>es obligatorio</strong></span>
               </div>
             </div>
             <div class="d-flex justify-content-between">

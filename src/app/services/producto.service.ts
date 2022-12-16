@@ -7,7 +7,7 @@ import { Producto } from "../models/producto";
   providedIn: 'root'
 })
 export class ProductoService {
-  url = 'http://localhost:8090/article';
+  url = 'http://localhost:8090/article/';
 
   constructor(private http: HttpClient) { }
 
@@ -20,8 +20,8 @@ export class ProductoService {
   guardarProducto(producto: Producto): Observable<any> {
     return this.http.post(this.url, producto);
   }
-  obtenerProducto(id: string): Observable<any> {
-    return this.http.get(this.url + id);
+  obtenerProducto(id: string): Observable<Producto> {
+    return this.http.get<Producto>(this.url + id);
   }
   editarProducto(id:string, producto: Producto): Observable<any> {
     return this.http.put(this.url + id, producto);
